@@ -4,7 +4,7 @@ public class LockedMeMain {
 
 
 		public static void main(String[] args) {
-			WelcomeScreen.printWelcomeScreen("LockedMe", "Nunna Likhitha");
+			MenuItems.printWelcomeScreen("LockedMe", "Nunna Likhitha");
 		}
 
 	
