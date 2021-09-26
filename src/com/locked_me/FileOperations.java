@@ -1,30 +1,41 @@
 package com.locked_me;
 import java.io.File;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+
 public class FileOperations {
-		public static void listFilesInDirectory(String path, int indentationCount) {
-			File dir = new File(path);
-	        File[] files = dir.listFiles();
+	
+	public static List<String> listFilesInDirectory(String path, int indentationCount, List<String> fileListNames) {
+		File dir = new File(path);
+		File[] files = dir.listFiles();
+		List<File> filesList = Arrays.asList(files);
 
-	        if (files != null && files.length > 0) {
-	            for (File file : files) {
+		Collections.sort(filesList);
 
-	            	System.out.print(" ".repeat(indentationCount*2));
+		if (files != null && files.length > 0) {
+			for (File file : filesList) {
 
+				System.out.print(" ".repeat(indentationCount * 2));
 
-	            	if (file.isDirectory()) {  
-	            		System.out.println("`-- " + file.getName());
+				if (file.isDirectory()) {
+					System.out.println("`-- " + file.getName());
 
-	            		// Recursively indent and display the files
-	                	listFilesInDirectory(file.getAbsolutePath(), indentationCount+1);
-	                }  else {
-	                	System.out.println("|-- " + file.getName());
-	                }
-	            }
-	        } else {
-	        	System.out.print(" ".repeat(indentationCount*2));
-	        	System.out.println("|-- Empty Directory");
-	        }
-	        System.out.println();
+					// Recursively indent and display the files
+					fileListNames.add(file.getName());
+					listFilesInDirectory(file.getAbsolutePath(), indentationCount + 1, fileListNames);
+				} else {
+					System.out.println("|-- " + file.getName());
+					fileListNames.add(file.getName());
+				}
+			}
+		} else {
+			System.out.print(" ".repeat(indentationCount * 2));
+			System.out.println("|-- Empty Directory");
 		}
+		System.out.println();
+		return fileListNames;
 	}
+
 }
