@@ -1,9 +1,10 @@
 package com.locked_me;
-
 import java.util.Scanner;
-
-public class LockedMeMain {	
-
+public class LockedMeMain {
+	public static void main(String[] args) {
+		MenuItems.printWelcomeScreen("LockedMe", "Nunna Likhitha");
+		handleWelcomeScreenInput();
+	}
 	private static void handleWelcomeScreenInput() {
 		boolean running = true;
 		Scanner sc = new Scanner(System.in);
@@ -14,7 +15,7 @@ public class LockedMeMain {
 
 				switch (input) {
 				case 1:
-					FileOperations.displayAllFiles("./main");
+					FileOperations.displayAllFiles("main");
 					break;
 				case 2:
 					MenuItems.handleFileMenuOptions();
@@ -34,4 +35,4 @@ public class LockedMeMain {
 			} 
 		} while (running == true);
 	}
-	}
+}
