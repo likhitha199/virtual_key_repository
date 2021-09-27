@@ -9,7 +9,7 @@ public class MenuItems {
 		String appFunction = "You can use this application to :-\n"
 				+ "• Retrieve all file names in the \"main\" folder\n"
 				+ "• Search, add, or delete files in \"main\" folder.\n"
-				+ "\n**Please be careful to ensure the correct filename is provided for searching or deleting files.**\n";
+				+ "\n**Please ensure that the correct filename is provided for searching or deleting files.**\n";
 		System.out.println(companyDetails);
 		System.out.println(appFunction);
 	}
@@ -31,23 +31,26 @@ public class MenuItems {
 		do {
 			try {
 				displayFileMenuOptions();
+				FileOperations.createMainFolderIfNotPresent("main");
+
 				int input = sc.nextInt();
 				switch (input) {
 				case 1:
 					// File Add
 					System.out.println("Enter the name of the file to be added to the \"main\" folder");
 					String fileToAdd = sc.next();
-
+					
 					FileOperations.createFile(fileToAdd, sc);
-
+					
 					break;
 				case 2:
 					// File/Folder delete
 					System.out.println("Enter the name of the file to be deleted from \"main\" folder");
 					String fileToDelete = sc.next();
 
+					FileOperations.createMainFolderIfNotPresent("main");
 					List<String> filesToDelete = FileOperations.displayFileLocations(fileToDelete, "main");
-					
+
 					String deletionPrompt = "\nSelect index of which file to delete?"
 							+ "\n(Enter 0 if you want to delete all elements)";
 					System.out.println(deletionPrompt);
@@ -64,12 +67,13 @@ public class MenuItems {
 						}
 					}
 					
-
 					break;
 				case 3:
 					// File/Folder Search
 					System.out.println("Enter the name of the file to be searched from \"main\" folder");
 					String fileName = sc.next();
+
+					FileOperations.createMainFolderIfNotPresent("main");
 					FileOperations.displayFileLocations(fileName, "main");
 
 
