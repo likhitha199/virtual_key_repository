@@ -3,21 +3,21 @@ package com.locked_me;
 import java.util.List;
 import java.util.Scanner;
 
-public class HandleOptions {
-	public static void handleWelcomeScreenInput() {
+public class ToggleOptions {
+	public static void handleInput() {
 		boolean running = true;
 		Scanner sc = new Scanner(System.in);
 		do {
 			try {
-				MenuItems.displayMenu();
+				MenuItems.Menu();
 				int input = sc.nextInt();
 
 				switch (input) {
 				case 1:
-					FileOperations.displayAllFiles("main");
+					FileManipulations.display("main");
 					break;
 				case 2:
-					HandleOptions.handleFileMenuOptions();
+					ToggleOptions.handleFileMenuOptions();
 					break;
 				case 3:
 					System.out.println("Program exited successfully.");
@@ -30,7 +30,7 @@ public class HandleOptions {
 				}
 			} catch (Exception e) {
 				System.out.println(e.getClass().getName());
-				handleWelcomeScreenInput();
+				handleInput();
 			} 
 		} while (running == true);
 	}
@@ -40,8 +40,8 @@ public class HandleOptions {
 		Scanner sc = new Scanner(System.in);
 		do {
 			try {
-				MenuItems.displayFileMenuOptions();
-				FileOperations.createMainFolderIfNotPresent("main");
+				MenuItems.FileMenuOptions();
+				FileManipulations.createMainFolder("main");
 
 				int input = sc.nextInt();
 				switch (input) {
@@ -50,7 +50,7 @@ public class HandleOptions {
 					System.out.println("Enter the name of the file to be added to the \"main\" folder");
 					String fileToAdd = sc.next();
 
-					FileOperations.createFile(fileToAdd, sc);
+					FileManipulations.createFile(fileToAdd, sc);
 
 					break;
 				case 2:
@@ -58,8 +58,8 @@ public class HandleOptions {
 					System.out.println("Enter the name of the file to be deleted from \"main\" folder");
 					String fileToDelete = sc.next();
 
-					FileOperations.createMainFolderIfNotPresent("main");
-					List<String> filesToDelete = FileOperations.displayFileLocations(fileToDelete, "main");
+					FileManipulations.createMainFolder("main");
+					List<String> filesToDelete = FileManipulations.displayFileLocations(fileToDelete, "main");
 
 					String deletionPrompt = "\nSelect index of which file to delete?"
 							+ "\n(Enter 0 if you want to delete all elements)";
@@ -68,12 +68,12 @@ public class HandleOptions {
 					int idx = sc.nextInt();
 
 					if (idx != 0) {
-						FileOperations.deleteFileRecursively(filesToDelete.get(idx - 1));
+						FileManipulations.deleteFileRecursively(filesToDelete.get(idx - 1));
 					} else {
 
 						// If idx == 0, delete all files displayed for the name
 						for (String path : filesToDelete) {
-							FileOperations.deleteFileRecursively(path);
+							FileManipulations.deleteFileRecursively(path);
 						}
 					}
 
@@ -84,8 +84,8 @@ public class HandleOptions {
 					System.out.println("Enter the name of the file to be searched from \"main\" folder");
 					String fileName = sc.next();
 
-					FileOperations.createMainFolderIfNotPresent("main");
-					FileOperations.displayFileLocations(fileName, "main");
+					FileManipulations.createMainFolder("main");
+					FileManipulations.displayFileLocations(fileName, "main");
 
 
 					break;

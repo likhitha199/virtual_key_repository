@@ -13,9 +13,9 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class FileOperations {
+public class FileManipulations {
 
-	public static void createMainFolderIfNotPresent(String folderName) {
+	public static void createMainFolder(String folderName) {
 		File file = new File(folderName);
 
 		// If file doesn't exist, create the main folder
@@ -24,13 +24,13 @@ public class FileOperations {
 		}
 	}
 
-	public static void displayAllFiles(String path) {
-		FileOperations.createMainFolderIfNotPresent("main");
+	public static void display(String path) {
+		FileManipulations.createMainFolder("main");
 		// All required files and folders inside "main" folder relative to current
 		// folder
 		System.out.println("Displaying all files with directory structure in ascending order\n");
 		// listFilesInDirectory displays files along with folder structure
-		List<String> filesListNames = FileOperations.listFilesInDirectory(path, 0, new ArrayList<String>());
+		List<String> filesListNames = FileManipulations.listFilesInDirectory(path, 0, new ArrayList<String>());
 		System.out.println("Displaying all files in ascending order\n");
 		Collections.sort(filesListNames);
 		filesListNames.stream().forEach(System.out::println);
@@ -62,7 +62,7 @@ public class FileOperations {
 	}
 
 	public static void createFile(String fileToAdd, Scanner sc) {
-		FileOperations.createMainFolderIfNotPresent("main");
+		FileManipulations.createMainFolder("main");
 		Path pathToFile = Paths.get("./main/" + fileToAdd);
 		try {
 			Files.createDirectories(pathToFile.getParent());
@@ -89,7 +89,7 @@ public class FileOperations {
 
 	public static List<String> displayFileLocations(String fileName, String path) {
 		List<String> fileListNames = new ArrayList<>();
-		FileOperations.searchFileRecursively(path, fileName, fileListNames);
+		FileManipulations.searchFileRecursively(path, fileName, fileListNames);
 		if (fileListNames.isEmpty()) {
 			System.out.println("\n\n***** Couldn't find any file with given file name \"" + fileName + "\" *****\n\n");
 		} else {
