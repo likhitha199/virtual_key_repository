@@ -1,18 +1,18 @@
 # LockedMe # Nunna Likhitha
-LockedMe - Virtual Key for Repositories
+LockedMe.com - Application to perform FileOperations
 Company Lockers Pvt. Ltd. hired you as a Full Stack Developer. They aim to digitize their products and chose LockedMe.com as their first project to start with.  
 ## View project locally
 To try out the project in your local machine:
 * clone this repository using `git clone `
-* Open the folder from Eclipse/IntelliJ 
+* Open the folder from Eclipse/IntelliJ/VS Code
 * Open LockedMeMain.java and Run
-## Component Hierarchy
+## Actions handled by various files
 | File    |  Description           |
 |-----------------|-------------------         |
-| `LockedMeMain.java` | This component contains the Main method. It's the entry point of the program. |
-| `MenuItems.java` | This component contains methods for displaying menu options. |
-| `HandleOptions.java` | This component contains methods for handling different options from user input and calls respective methods from FileOperations. |
-| `FileOperations.java` | This component defines all the operations required for displaying, searching, deleting and adding files/folder.|
+| `LockedMeMain.java` | This file acts as the Main method. It executes the project. |
+| `MenuItems.java` | This file contains methods for displaying menu items. |
+| `ToggleOptions.java` | This file contains methods for performing various operations from user input and calls respective methods from FileManipulations. |
+| `FileManipulations.java` | This file defines all the operations required for displaying, searching, deleting and adding files/folder.|
 To track below deliverables - 
     Specification document - Product's capabilities, appearance, and user interactions
     Java concepts being used in the project 
